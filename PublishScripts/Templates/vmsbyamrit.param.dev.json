@@ -1,0 +1,32 @@
+{
+  "siteName": {
+    "value": "vmsbyamritsingh"
+  },
+  "hostingPlanName": {
+    "value": "vmsbyamritsingh"
+  },
+  "siteLocation": {
+    "value": "South Central US"
+  },
+  "sku": {
+    "value": "Free"
+  },
+  "workerSize": {
+    "value": "0"
+  },
+  "serverName": {
+    "value": "vmsbyamritsingh"
+  },
+  "serverLocation": {
+    "value": "South Central US"
+  },
+  "administratorLogin": {
+    "value": "vmsbyamritsingh"
+  },
+  "administratorLoginPassword": {
+    "value": "Qawsed1!"
+  },
+  "databaseName": {
+    "value": "vmsbyamritsingh_db"
+  }
+}
