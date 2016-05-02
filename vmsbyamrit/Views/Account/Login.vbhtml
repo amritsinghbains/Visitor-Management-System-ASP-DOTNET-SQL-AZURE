@@ -51,11 +51,6 @@ End Code
             End Using
         </section>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", New ExternalLoginListViewModel With {.ReturnUrl = ViewBag.ReturnUrl})
-        </section>
-    </div>
 </div>
 @Section Scripts
     @Scripts.Render("~/bundles/jqueryval")

@@ -2,6 +2,7 @@
 Imports System.Collections.Generic
 Imports System.Data
 Imports System.Data.Entity
+Imports System.Data.Entity.Core.Objects
 Imports System.Linq
 Imports System.Net
 Imports System.Web
@@ -14,13 +15,32 @@ Namespace Controllers
 
         Private db As New ApplicationDbContext
 
-        ' GET: Visitors
-        Function Index() As ActionResult
-            Return View(db.Visitors.ToList())
+        Function Index(ByVal searchString As String, ByVal durationString1 As Short?, ByVal durationString2 As Short?, ByVal signedStatusString As String) As ActionResult
+            Dim visitors = From m In db.Visitors Select m
+            Dim currentDateTime = DateTime.Now
+            If Not String.IsNullOrEmpty(searchString) Then
+                visitors = visitors.Where(Function(visitor) visitor.VisitingPerson.Contains(searchString))
+            End If
+
+            If Not IsNothing(durationString1) Then
+                visitors = visitors.Where(Function(visitor) System.Data.Entity.DbFunctions.DiffMinutes(visitor.Signin, visitor.Signout) >= durationString1 And System.Data.Entity.DbFunctions.DiffMinutes(visitor.Signin, visitor.Signout) <= durationString2)
+            End If
+
+            If Not String.IsNullOrEmpty(signedStatusString) Then
+                If (signedStatusString).Equals("present") Then
+                    System.Diagnostics.Debug.WriteLine("present")
+                    visitors = visitors.Where(Function(visitor) System.Data.Entity.DbFunctions.DiffSeconds(DateTime.Now, visitor.Signout) > 0 And System.Data.Entity.DbFunctions.DiffSeconds(visitor.Signin, DateTime.Now) > 0)
+
+                ElseIf (signedStatusString).Equals("absent") Then
+                    System.Diagnostics.Debug.WriteLine("absent")
+                    visitors = visitors.Where(Function(visitor) System.Data.Entity.DbFunctions.DiffSeconds(DateTime.Now, visitor.Signout) < 0 Or System.Data.Entity.DbFunctions.DiffSeconds(visitor.Signin, DateTime.Now) < 0)
+                End If
+            End If
+
+            Return View(visitors)
         End Function
 
-        ' GET: Visitors/Search
-        Function Search() As ActionResult
+        Function Index2() As ActionResult
             Return View(db.Visitors.ToList())
         End Function
 
