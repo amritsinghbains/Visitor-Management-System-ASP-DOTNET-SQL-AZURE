@@ -7,7 +7,28 @@ End Code
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="http://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.js"></script>
 
-
+<script>
+    function dateChecker(dt1, dt2) {
+        dt1 = new Date(dt1);
+        dt2 = new Date(dt2);
+        if (dt1 > dt2) {
+            alert("Sign in time should be less than Sign out time");
+            $("#submitButton").hide();
+        } else {
+            $("#submitButton").show();
+        }
+    }
+    function initCheck(){
+        if ($("#Signin").val().length > 0 && $("#Signout").val().length > 0) {
+            dateChecker($("#Signin").val(), $("#Signout").val())
+        }
+    }
+    function validation() {
+        if ($("#Signin").val().length > 0 && $("#Signout").val().length > 0 && ("#Name").val().length > 0 && $("#VisitingPerson").val().length > 0) {
+            $("#submitButton").show();
+        }
+    }
+</script>
 
 
 <link href="http://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.css" rel="stylesheet">
@@ -73,12 +94,32 @@ End Code
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input id="submitButton" type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
         </div>
     End Using
+<script>
 
+    $("#Signin").blur(function () {
+        initCheck();
+        validation();
+    });
+    $("#Signout").blur(function () {
+        initCheck();
+        validation();
+    });
+    $("#Name").blur(function () {
+        validation();
+    });
+    $("#VisitingPerson").blur(function () {
+        validation();
+    });
+    $("#submitButton").hide();
+
+    
+    
+</script>
     @Section Scripts
         @Scripts.Render("~/bundles/jqueryval")
     End Section

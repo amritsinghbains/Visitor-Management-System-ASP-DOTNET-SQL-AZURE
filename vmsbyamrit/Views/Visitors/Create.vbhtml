@@ -5,7 +5,7 @@ End Code
     <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <script src="http://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.js"></script>
+    <script src="../Scripts/jquery-ui-timepicker-addon.js"></script>
 
 <script>
     function dateChecker(dt1, dt2) {
@@ -31,7 +31,7 @@ End Code
 </script>
 
 
-<link href="http://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.css" rel="stylesheet">
+<link href="../Scripts/jquery-ui-timepicker-addon.css" rel="stylesheet">
     <script>
         $(function () {
             $('#Signin').datetimepicker({
