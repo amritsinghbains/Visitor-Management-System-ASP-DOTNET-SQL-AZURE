@@ -24,7 +24,7 @@ End Code
         }
     }
     function validation() {
-        if ($("#Signin").val().length > 0 && $("#Signout").val().length > 0 && ("#Name").val().length > 0 && $("#VisitingPerson").val().length > 0) {
+        if ($("#Signin").val().length > 0 && $("#Signout").val().length > 0 && $("#Name").val().length > 0 && $("#VisitingPerson").val().length > 0) {
             $("#submitButton").show();
         }
     }
